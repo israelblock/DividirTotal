@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -26,28 +25,27 @@ public class MainActivity extends Activity {
         dezporcento = findViewById(R.id.dezporcento);
 
     }
-    public void calcula(View v){
+
+    public void calcula(View v) {
         String total = comanda.getText().toString();
         String p = pessoas.getText().toString();
 
-        if(v.getId()==R.id.calcular){
-            if(dezporcento.isChecked()) {
+        if (v.getId() == R.id.calcular) {
+            if (dezporcento.isChecked()) {
 
                 float vTotal = Float.parseFloat(total);
-                float vTotal2 = (float) (vTotal + (vTotal*0.1));
+                float vTotal2 = (float) (vTotal + (vTotal * 0.1));
                 float qPessoas = Float.parseFloat(p);
 
                 float valorPorPessoa = vTotal2 / qPessoas;
-                resultado.setText("O valor por pessoa é de "+ String.valueOf(valorPorPessoa));
-            }else {
+                resultado.setText("O valor por pessoa é de " + String.valueOf(valorPorPessoa));
+            } else {
                 float vTotal = Float.parseFloat(total);
                 float qPessoas = Float.parseFloat(p);
 
                 float valorPorPessoa = vTotal / qPessoas;
-                resultado.setText("O valor por pessoa é de "+ String.valueOf(valorPorPessoa));
+                resultado.setText("O valor por pessoa é de " + String.valueOf(valorPorPessoa));
             }
-            //Toast.makeText(this, String.valueOf(valorPorPessoa), Toast.LENGTH_LONG).show();
-
         }
     }
 }

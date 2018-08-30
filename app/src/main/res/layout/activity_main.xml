@@ -18,33 +18,36 @@
         android:id="@+id/comanda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="@string/comanda"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:visibility="visible" />
 
     <EditText
         android:id="@+id/pessoas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="@string/pessoas"
-        android:inputType="text"
+        android:inputType="number"
         android:visibility="visible" />
 
     <CheckBox
         android:id="@+id/dezporcento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Deseja pagar 10%?" />
+        android:text="@string/dezporcento" />
 
     <Button
-        android:onClick="calcula"
         android:id="@+id/calcular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calcular"
-        />
+        android:layout_marginBottom="20dp"
+        android:onClick="calcula"
+        android:text="@string/calcular" />
+
     <TextView
         android:id="@+id/resultado"
         android:layout_width="match_parent"

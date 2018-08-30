@@ -3,4 +3,6 @@
     <string name="titulo">Dividir Total</string>
     <string name="comanda">Valor da comanda</string>
     <string name="pessoas">Quantas pessoas?</string>
+    <string name="dezporcento">Deseja pagar 10%?</string>
+    <string name="calcular">Calcular</string>
 </resources>
