@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends Activity {
 
@@ -24,6 +28,28 @@ public class MainActivity extends Activity {
         resultado = findViewById(R.id.resultado);
         dezporcento = findViewById(R.id.dezporcento);
 
+        dezporcento.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int people = Integer.parseInt(pessoas.getText().toString());
+                if(comanda!=null && people > 0){
+                    if(isChecked==true){
+                        double novaComanda = Double.parseDouble(comanda.getText().toString());
+                        novaComanda = (novaComanda + (novaComanda * 0.1));
+                        comanda.setText(new DecimalFormat(".00").format(novaComanda));
+                    }if(isChecked==false){
+                        double novaComanda = Double.parseDouble(comanda.getText().toString());
+                        novaComanda = (novaComanda - (novaComanda * 0.1));
+                        comanda.setText(new DecimalFormat(".00").format(novaComanda));
+                    }
+                }else{
+                    Toast.makeText(MainActivity.this, "Os campos precisam ser preenchidos com valores maiores que 0", Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        });
+
     }
 
     public void calcula(View v) {
@@ -31,21 +57,16 @@ public class MainActivity extends Activity {
         String p = pessoas.getText().toString();
 
         if (v.getId() == R.id.calcular) {
-            if (dezporcento.isChecked()) {
 
-                float vTotal = Float.parseFloat(total);
-                float vTotal2 = (float) (vTotal + (vTotal * 0.1));
-                float qPessoas = Float.parseFloat(p);
+            Double vTotal = Double.parseDouble(total);
+            Double qPessoas = Double.parseDouble(p);
 
-                float valorPorPessoa = vTotal2 / qPessoas;
-                resultado.setText("O valor por pessoa é de " + String.valueOf(valorPorPessoa));
-            } else {
-                float vTotal = Float.parseFloat(total);
-                float qPessoas = Float.parseFloat(p);
+            DecimalFormat mFormat = new DecimalFormat(".00");
 
-                float valorPorPessoa = vTotal / qPessoas;
-                resultado.setText("O valor por pessoa é de " + String.valueOf(valorPorPessoa));
-            }
+            Double valorPorPessoa = vTotal / qPessoas;
+
+            resultado.setText("O valor por pessoa é de R$" + mFormat.format(valorPorPessoa));
         }
     }
 }
+
