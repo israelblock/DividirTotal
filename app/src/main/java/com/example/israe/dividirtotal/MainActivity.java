@@ -31,18 +31,23 @@ public class MainActivity extends Activity {
         dezporcento = findViewById(R.id.dezporcento);
         guardaValor = null;
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         dezporcento.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!Objects.equals(comanda.getText().toString(), "")) {
-                    if (isChecked == true) {
+                    if (isChecked) {
                         double novaComanda = Double.parseDouble(comanda.getText().toString());
                         guardaValor = novaComanda;
                         novaComanda = (novaComanda + (novaComanda * 0.1));
                         comanda.setText(new DecimalFormat(".00").format(novaComanda));
 
                     }
-                    if (isChecked == false) {
+                    if (!isChecked) {
                         comanda.setText(new DecimalFormat(".00").format(guardaValor));
                     }
                 } else {
@@ -51,7 +56,6 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
     }
 
     public void calcula(View v) {
@@ -72,7 +76,8 @@ public class MainActivity extends Activity {
                     Toast.makeText(MainActivity.this, "Não é possível dividir por 0 pessoas", Toast.LENGTH_LONG).show();
                     resultado.setText("");
                 }else {
-                    resultado.setText("O valor por pessoa é de R$" + mFormat.format(valorPorPessoa));
+                    String res = "O valor por pessoa é de R$" + mFormat.format(valorPorPessoa);
+                    resultado.setText(res);
                 }
             }else{
                 Toast.makeText(MainActivity.this, "Os campos precisam ser preenchidos com valores maiores que 0", Toast.LENGTH_LONG).show();
